@@ -407,7 +407,7 @@ Feature: Downloading things from a website.
         Then "Opening *download.bin* with [*python*]" should be logged
 
     Scenario: Opening a download with default-open-dispatcher set and override
-        When I set general.default_open_dispatcher to cat
+        When I set downloads.open_dispatcher to cat
         And I open data/downloads/download.bin without waiting
         And I wait until the download is finished
         And I open the download
@@ -601,7 +601,7 @@ Feature: Downloading things from a website.
 
     Scenario: Downloading invalid URL
         When I set downloads.location.prompt to false
-        And I set general.auto_search to false
+        And I set auto_search to false
         And I run :download foo!
         Then the error "Invalid URL" should be shown
 

@@ -145,7 +145,7 @@ Feature: Yanking and pasting.
                   url: http://localhost:*/data/hello.txt
 
     Scenario: Pasting an invalid URL
-        When I set general.auto_search to false
+        When I set auto_search to false
         And I put "foo bar" into the clipboard
         And I run :open {clipboard}
         Then the error "Invalid URL" should be shown
@@ -168,7 +168,7 @@ Feature: Yanking and pasting.
             - data/hello3.txt
 
     Scenario: Pasting multiline text
-        When I set general.auto_search to true
+        When I set auto_search to true
         And I set searchengines.DEFAULT to http://localhost:(port)/data/hello.txt?q={}
         And I put the following lines into the clipboard:
             this url:
@@ -181,7 +181,7 @@ Feature: Yanking and pasting.
             - data/hello.txt?q=this%20url%3A%0Ahttp%3A//qutebrowser.org%0Ashould%20not%20open (active)
 
     Scenario: Pasting multiline whose first line looks like a URI
-        When I set general.auto_search to true
+        When I set auto_search to true
         And I set searchengines.DEFAULT to http://localhost:(port)/data/hello.txt?q={}
         And I put the following lines into the clipboard:
             text:

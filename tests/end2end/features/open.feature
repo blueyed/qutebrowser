@@ -17,17 +17,17 @@ Feature: Opening pages
                   url: http://localhost:*/data/numbers/1.txt
 
     Scenario: :open without URL
-        When I set general.default_page to http://localhost:(port)/data/numbers/11.txt
+        When I set default_page to http://localhost:(port)/data/numbers/11.txt
         And I run :open
         Then data/numbers/11.txt should be loaded
 
     Scenario: :open without URL and -t
-        When I set general.default_page to http://localhost:(port)/data/numbers/2.txt
+        When I set default_page to http://localhost:(port)/data/numbers/2.txt
         And I run :open -t
         Then data/numbers/2.txt should be loaded
 
     Scenario: :open with invalid URL
-        When I set general.auto_search to false
+        When I set auto_search to false
         And I run :open foo!
         Then the error "Invalid URL" should be shown
 
@@ -36,7 +36,7 @@ Feature: Opening pages
         Then the error "Only one of -t/-b/-w/-p can be given!" should be shown
 
     Scenario: Searching with :open
-        When I set general.auto_search to naive
+        When I set auto_search to naive
         And I set searchengines.DEFAULT to http://localhost:(port)/data/numbers/{}.txt
         And I run :open 3
         Then data/numbers/3.txt should be loaded

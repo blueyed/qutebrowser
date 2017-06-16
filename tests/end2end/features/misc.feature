@@ -150,7 +150,7 @@ Feature: Various utility commands.
 
     @qtwebengine_skip
     Scenario: Inspector without developer extras
-        When I set general.developer_extras to false
+        When I set content.developer_extras to false
         And I run :inspector
         Then the error "Please enable developer-extras before using the webinspector!" should be shown
 
@@ -161,7 +161,7 @@ Feature: Various utility commands.
 
     @no_xvfb @posix @qtwebengine_skip
     Scenario: Inspector smoke test
-        When I set general.developer_extras to true
+        When I set content.developer_extras to true
         And I run :inspector
         And I wait for "Focus object changed: <PyQt5.QtWebKitWidgets.QWebView object at *>" in the log
         And I run :inspector
@@ -171,14 +171,14 @@ Feature: Various utility commands.
     # Different code path as an inspector got created now
     @qtwebengine_skip
     Scenario: Inspector without developer extras (after smoke)
-        When I set general.developer_extras to false
+        When I set content.developer_extras to false
         And I run :inspector
         Then the error "Please enable developer-extras before using the webinspector!" should be shown
 
     # Different code path as an inspector got created now
     @no_xvfb @posix @qtwebengine_skip
     Scenario: Inspector smoke test 2
-        When I set general.developer_extras to true
+        When I set content.developer_extras to true
         And I run :inspector
         And I wait for "Focus object changed: <PyQt5.QtWebKitWidgets.QWebView object at *>" in the log
         And I run :inspector
@@ -338,12 +338,12 @@ Feature: Various utility commands.
     # :home
 
     Scenario: :home with single page
-        When I set general.startpage to http://localhost:(port)/data/hello2.txt
+        When I set start_page to http://localhost:(port)/data/hello2.txt
         And I run :home
         Then data/hello2.txt should be loaded
 
     Scenario: :home with multiple pages
-        When I set general.startpage to http://localhost:(port)/data/numbers/1.txt,http://localhost:(port)/data/numbers/2.txt
+        When I set start_page to http://localhost:(port)/data/numbers/1.txt,http://localhost:(port)/data/numbers/2.txt
         And I run :home
         Then data/numbers/1.txt should be loaded
 
