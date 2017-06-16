@@ -5,7 +5,7 @@ Feature: Javascript stuff
     Integration with javascript.
 
     Scenario: Using console.log
-        When I set general.log_javascript_console to debug
+        When I set content.javascript.console to debug
         And I open data/javascript/consolelog.html
         Then the javascript message "console.log works!" should be logged
 

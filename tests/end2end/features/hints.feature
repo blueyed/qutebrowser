@@ -197,7 +197,7 @@ Feature: Using hints
         Then the error "No elements found." should be shown
 
     Scenario: Clicking input with existing text
-        When I set general.log_javascript_console to info
+        When I set content.javascript.console to info
         And I open data/hints/input.html
         And I run :click-element id qute-input-existing
         And I wait for "Entering mode KeyMode.insert *" in the log
@@ -241,7 +241,7 @@ Feature: Using hints
         And I hint with args "all current" and follow a
         Then no crash should happen
 
-    ### hints -> auto-follow-timeout
+    ### hints.auto_follow-timeout
 
     @not_osx
     Scenario: Ignoring key presses after auto-following hints
@@ -367,7 +367,7 @@ Feature: Using hints
 
     ### auto-follow option
 
-    Scenario: Using hints -> auto-follow == 'always' in letter mode
+    Scenario: Using hints.auto_follow = 'always' in letter mode
         When I open data/hints/html/simple.html
         And I set hints.mode to letter
         And I set hints.auto_follow to always
@@ -375,7 +375,7 @@ Feature: Using hints
         Then data/hello.txt should be loaded
 
     # unique-match is actually the same as full-match in letter mode
-    Scenario: Using hints -> auto-follow == 'unique-match' in letter mode
+    Scenario: Using hints.auto_follow = 'unique-match' in letter mode
         When I open data/hints/html/simple.html
         And I set hints.mode to letter
         And I set hints.auto_follow to unique-match
@@ -383,7 +383,7 @@ Feature: Using hints
         And I press the key "a"
         Then data/hello.txt should be loaded
 
-    Scenario: Using hints -> auto-follow == 'full-match' in letter mode
+    Scenario: Using hints.auto_follow = 'full-match' in letter mode
         When I open data/hints/html/simple.html
         And I set hints.mode to letter
         And I set hints.auto_follow to full-match
@@ -391,7 +391,7 @@ Feature: Using hints
         And I press the key "a"
         Then data/hello.txt should be loaded
 
-    Scenario: Using hints -> auto-follow == 'never' without Enter in letter mode
+    Scenario: Using hints.auto_follow = 'never' without Enter in letter mode
         When I open data/hints/html/simple.html
         And I set hints.mode to letter
         And I set hints.auto_follow to never
@@ -399,7 +399,7 @@ Feature: Using hints
         And I press the key "a"
         Then "Leaving mode KeyMode.hint (reason: followed)" should not be logged
 
-    Scenario: Using hints -> auto-follow == 'never' in letter mode
+    Scenario: Using hints.auto_follow = 'never' in letter mode
         When I open data/hints/html/simple.html
         And I set hints.mode to letter
         And I set hints.auto_follow to never
@@ -408,14 +408,14 @@ Feature: Using hints
         And I press the key "<Enter>"
         Then data/hello.txt should be loaded
 
-    Scenario: Using hints -> auto-follow == 'always' in number mode
+    Scenario: Using hints.auto_follow = 'always' in number mode
         When I open data/hints/html/simple.html
         And I set hints.mode to number
         And I set hints.auto_follow to always
         And I hint with args "all"
         Then data/hello.txt should be loaded
 
-    Scenario: Using hints -> auto-follow == 'unique-match' in number mode
+    Scenario: Using hints.auto_follow = 'unique-match' in number mode
         When I open data/hints/html/simple.html
         And I set hints.mode to number
         And I set hints.auto_follow to unique-match
@@ -423,7 +423,7 @@ Feature: Using hints
         And I press the key "f"
         Then data/hello.txt should be loaded
 
-    Scenario: Using hints -> auto-follow == 'full-match' in number mode
+    Scenario: Using hints.auto_follow = 'full-match' in number mode
         When I open data/hints/html/simple.html
         And I set hints.mode to number
         And I set hints.auto_follow to full-match
@@ -432,7 +432,7 @@ Feature: Using hints
         And I press the key "follow me!"
         Then data/hello.txt should be loaded
 
-    Scenario: Using hints -> auto-follow == 'never' without Enter in number mode
+    Scenario: Using hints.auto_follow = 'never' without Enter in number mode
         When I open data/hints/html/simple.html
         And I set hints.mode to number
         And I set hints.auto_follow to never
@@ -441,7 +441,7 @@ Feature: Using hints
         And I press the key "follow me!"
         Then "Leaving mode KeyMode.hint (reason: followed)" should not be logged
 
-    Scenario: Using hints -> auto-follow == 'never' in number mode
+    Scenario: Using hints.auto_follow = 'never' in number mode
         When I open data/hints/html/simple.html
         And I set hints.mode to number
         And I set hints.auto_follow to never
@@ -451,14 +451,14 @@ Feature: Using hints
         And I press the key "<Enter>"
         Then data/hello.txt should be loaded
 
-    Scenario: Using hints -> auto-follow == 'always' in word mode
+    Scenario: Using hints.auto_follow = 'always' in word mode
         When I open data/hints/html/simple.html
         And I set hints.mode to word
         And I set hints.auto_follow to always
         And I hint with args "all"
         Then data/hello.txt should be loaded
 
-    Scenario: Using hints -> auto-follow == 'unique-match' in word mode
+    Scenario: Using hints.auto_follow = 'unique-match' in word mode
         When I open data/hints/html/simple.html
         And I set hints.mode to word
         And I set hints.auto_follow to unique-match
@@ -467,7 +467,7 @@ Feature: Using hints
         And I press the key "h"
         Then data/hello.txt should be loaded
 
-    Scenario: Using hints -> auto-follow == 'full-match' in word mode
+    Scenario: Using hints.auto_follow = 'full-match' in word mode
         When I open data/hints/html/simple.html
         And I set hints.mode to word
         And I set hints.auto_follow to full-match
@@ -476,7 +476,7 @@ Feature: Using hints
         And I press the key "hello"
         Then data/hello.txt should be loaded
 
-    Scenario: Using hints -> auto-follow == 'never' without Enter in word mode
+    Scenario: Using hints.auto_follow = 'never' without Enter in word mode
         When I open data/hints/html/simple.html
         And I set hints.mode to word
         And I set hints.auto_follow to never
@@ -485,7 +485,7 @@ Feature: Using hints
         And I press the key "hello"
         Then "Leaving mode KeyMode.hint (reason: followed)" should not be logged
 
-    Scenario: Using hints -> auto-follow == 'never' in word mode
+    Scenario: Using hints.auto_follow = 'never' in word mode
         When I open data/hints/html/simple.html
         And I set hints.mode to word
         And I set hints.auto_follow to never

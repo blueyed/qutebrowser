@@ -4,7 +4,7 @@ Feature: Prompts
     Various prompts (javascript, SSL errors, authentification, etc.)
 
     Background:
-        Given I set general.log_javascript_console to debug
+        Given I set content.javascript.console to debug
 
     # Javascript
 
@@ -15,8 +15,8 @@ Feature: Prompts
         And I run :prompt-accept
         Then the javascript message "Alert done" should be logged
 
-    Scenario: Using content -> ignore-javascript-alert
-        When I set content.ignore_javascript_alert to true
+    Scenario: Using content.javascript.alert
+        When I set content.javascript.alert to false
         And I open data/prompt/jsalert.html
         And I run :click-element id button
         Then the javascript message "Alert done" should be logged
@@ -161,8 +161,8 @@ Feature: Prompts
         Then the javascript message "Prompt reply: clipboard test" should be logged
 
     @js_prompt
-    Scenario: Using content -> ignore-javascript-prompt
-        When I set content.ignore_javascript_prompt to true
+    Scenario: Using content.javascript.prompt
+        When I set content.javascript.prompt to false
         And I open data/prompt/jsprompt.html
         And I run :click-element id button
         Then the javascript message "Prompt reply: null" should be logged
@@ -171,7 +171,7 @@ Feature: Prompts
 
     Scenario: SSL error with ssl-strict = false
         When I clear SSL errors
-        And I set network.ssl_strict to false
+        And I set content.ssl_strict to false
         And I load an SSL page
         And I wait until the SSL page finished loading
         Then the error "Certificate error: *" should be shown
@@ -180,13 +180,13 @@ Feature: Prompts
     @issue2478
     Scenario: SSL error with ssl-strict = true
         When I clear SSL errors
-        And I set network.ssl_strict to true
+        And I set content.ssl_strict to true
         And I load an SSL page
         Then a SSL error page should be shown
 
     Scenario: SSL error with ssl-strict = ask -> yes
         When I clear SSL errors
-        And I set network.ssl_strict to ask
+        And I set content.ssl_strict to ask
         And I load an SSL page
         And I wait for a prompt
         And I run :prompt-accept yes
@@ -196,7 +196,7 @@ Feature: Prompts
     @issue2478
     Scenario: SSL error with ssl-strict = ask -> no
         When I clear SSL errors
-        And I set network.ssl_strict to ask
+        And I set content.ssl_strict to ask
         And I load an SSL page
         And I wait for a prompt
         And I run :prompt-accept no
@@ -205,7 +205,7 @@ Feature: Prompts
     @issue2478
     Scenario: SSL error with ssl-strict = ask -> abort
         When I clear SSL errors
-        And I set network.ssl_strict to ask
+        And I set content.ssl_strict to ask
         And I load an SSL page
         And I wait for a prompt
         And I run :leave-mode
@@ -488,7 +488,7 @@ Feature: Prompts
     @qtwebengine_todo: Notifications are not implemented in QtWebEngine
     Scenario: Interrupting SSL prompt during a notification prompt
         When I set content.notifications to ask
-        And I set network.ssl_strict to ask
+        And I set content.ssl_strict to ask
         And I open data/prompt/notifications.html in a new tab
         And I run :click-element id button
         And I wait for a prompt

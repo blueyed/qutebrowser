@@ -79,7 +79,7 @@ Feature: Downloading things from a website.
 
     Scenario: Downloading with SSL errors (issue 1413)
         When I clear SSL errors
-        And I set network.ssl_strict to ask
+        And I set content.ssl_strict to ask
         And I set downloads.location.prompt to false
         And I download an SSL page
         And I wait for "Entering mode KeyMode.* (reason: question asked)" in the log
@@ -458,32 +458,32 @@ Feature: Downloading things from a website.
         And I wait until the download is finished
         Then "Opening * with [*python*]" should be logged
 
-    ## completion -> download-path-suggestion
+    ## downloads.location.suggestion
 
-    Scenario: completion -> download-path-suggestion = path
+    Scenario: downloads.location.suggestion = path
         When I set downloads.location.prompt to true
         And I set downloads.location.suggestion to path
         And I open data/downloads/download.bin without waiting
         Then the download prompt should be shown with "(tmpdir)/downloads/"
 
-    Scenario: completion -> download-path-suggestion = filename
+    Scenario: downloads.location.suggestion = filename
         When I set downloads.location.prompt to true
         And I set downloads.location.suggestion to filename
         And I open data/downloads/download.bin without waiting
         Then the download prompt should be shown with "download.bin"
 
-    Scenario: completion -> download-path-suggestion = both
+    Scenario: downloads.location.suggestion = both
         When I set downloads.location.prompt to true
         And I set downloads.location.suggestion to both
         And I open data/downloads/download.bin without waiting
         Then the download prompt should be shown with "(tmpdir)/downloads/download.bin"
 
-    ## storage -> remember-download-directory
+    ## downloads.location.remember
 
     Scenario: Remembering the last download directory
         When I set downloads.location.prompt to true
         And I set downloads.location.suggestion to both
-        And I set storage.remember_download_directory to true
+        And I set downloads.location.remember to true
         And I open data/downloads/download.bin without waiting
         And I wait for the download prompt for "*/download.bin"
         And I run :prompt-accept (tmpdir)(dirsep)downloads(dirsep)subdir
@@ -493,7 +493,7 @@ Feature: Downloading things from a website.
     Scenario: Not remembering the last download directory
         When I set downloads.location.prompt to true
         And I set downloads.location.suggestion to both
-        And I set storage.remember_download_directory to false
+        And I set downloads.location.remember to false
         And I open data/downloads/download.bin without waiting
         And I wait for the download prompt for "(tmpdir)/downloads/download.bin"
         And I run :prompt-accept (tmpdir)(dirsep)downloads(dirsep)subdir
@@ -505,7 +505,7 @@ Feature: Downloading things from a website.
     Scenario: Remembering the temporary download directory (issue 2173)
         When I set downloads.location.prompt to true
         And I set downloads.location.suggestion to both
-        And I set storage.remember_download_directory to true
+        And I set downloads.location.remember to true
         And I open data/downloads/download.bin without waiting
         And I wait for the download prompt for "*"
         And I run :prompt-accept (tmpdir)(dirsep)downloads

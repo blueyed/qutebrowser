@@ -50,19 +50,19 @@ Feature: Various utility commands.
     ## :jseval
 
     Scenario: :jseval
-        When I set general.log_javascript_console to info
+        When I set content.javascript.console to info
         And I run :jseval console.log("Hello from JS!");
         And I wait for the javascript message "Hello from JS!"
         Then the message "No output or error" should be shown
 
     Scenario: :jseval without logging
-        When I set general.log_javascript_console to none
+        When I set content.javascript.console to none
         And I run :jseval console.log("Hello from JS!");
         Then the message "No output or error" should be shown
         And "[:*] Hello from JS!" should not be logged
 
     Scenario: :jseval with --quiet
-        When I set general.log_javascript_console to info
+        When I set content.javascript.console to info
         And I run :jseval --quiet console.log("Hello from JS!");
         And I wait for the javascript message "Hello from JS!"
         Then "No output or error" should not be logged
@@ -77,7 +77,7 @@ Feature: Various utility commands.
 
     @qtwebengine_skip
     Scenario: :jseval with --world on QtWebKit
-        When I set general.log_javascript_console to info
+        When I set content.javascript.console to info
         And I run :jseval --world=1 console.log("Hello from JS!");
         And I wait for the javascript message "Hello from JS!"
         Then "Ignoring world ID 1" should be logged
@@ -85,7 +85,7 @@ Feature: Various utility commands.
 
     @qtwebkit_skip
     Scenario: :jseval uses separate world without --world
-        When I set general.log_javascript_console to info
+        When I set content.javascript.console to info
         And I open data/misc/jseval.html
         And I run :jseval do_log()
         Then the javascript message "Hello from the page!" should not be logged
@@ -94,7 +94,7 @@ Feature: Various utility commands.
 
     @qtwebkit_skip
     Scenario: :jseval using the main world
-        When I set general.log_javascript_console to info
+        When I set content.javascript.console to info
         And I open data/misc/jseval.html
         And I run :jseval --world 0 do_log()
         Then the javascript message "Hello from the page!" should be logged
@@ -102,14 +102,14 @@ Feature: Various utility commands.
 
     @qtwebkit_skip
     Scenario: :jseval using the main world as name
-        When I set general.log_javascript_console to info
+        When I set content.javascript.console to info
         And I open data/misc/jseval.html
         And I run :jseval --world main do_log()
         Then the javascript message "Hello from the page!" should be logged
         And "No output or error" should be logged
 
     Scenario: :jseval --file using a file that exists as js-code
-        When I set general.log_javascript_console to info
+        When I set content.javascript.console to info
         And I run :jseval --file (testdata)/misc/jseval_file.js
         Then the javascript message "Hello from JS!" should be logged
         And the javascript message "Hello again from JS!" should be logged
@@ -447,36 +447,36 @@ Feature: Various utility commands.
     ## Custom headers
 
     Scenario: Setting a custom header
-        When I set network.custom_headers to {"X-Qute-Test": "testvalue"}
+        When I set content.custom_headers to {"X-Qute-Test": "testvalue"}
         And I open headers
         Then the header X-Qute-Test should be set to testvalue
 
     Scenario: DNT header
-        When I set network.do_not_track to true
+        When I set content.do_not_track to true
         And I open headers
         Then the header Dnt should be set to 1
         And the header X-Do-Not-Track should be set to 1
 
     Scenario: DNT header (off)
-        When I set network.do_not_track to false
+        When I set content.do_not_track to false
         And I open headers
         Then the header Dnt should be set to 0
         And the header X-Do-Not-Track should be set to 0
 
     Scenario: Accept-Language header
-        When I set network.accept_language to en,de
+        When I set content.accept_language to en,de
         And I open headers
         Then the header Accept-Language should be set to en,de
 
     Scenario: Setting a custom user-agent header
-        When I set network.user_agent to toaster
+        When I set content.user_agent to toaster
         And I open headers
         And I run :jseval console.log(window.navigator.userAgent)
         Then the header User-Agent should be set to toaster
         And the javascript message "toaster" should be logged
 
     Scenario: Setting the default user-agent header
-        When I set network.user_agent to <empty>
+        When I set content.user_agent to <empty>
         And I open headers
         And I run :jseval console.log(window.navigator.userAgent)
         Then the header User-Agent should be set to Mozilla/5.0 *
