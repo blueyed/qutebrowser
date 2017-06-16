@@ -145,7 +145,7 @@ Feature: Yanking and pasting.
                   url: http://localhost:*/data/hello.txt
 
     Scenario: Pasting an invalid URL
-        When I set auto_search to false
+        When I set auto_search to never
         And I put "foo bar" into the clipboard
         And I run :open {clipboard}
         Then the error "Invalid URL" should be shown
