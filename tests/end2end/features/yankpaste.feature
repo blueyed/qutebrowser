@@ -169,7 +169,7 @@ Feature: Yanking and pasting.
 
     # FIXME:conf
     # Scenario: Pasting multiline text
-    #     When I set auto_search to true
+    #     When I set auto_search to naive
     #     And I set searchengines.DEFAULT to http://localhost:(port)/data/hello.txt?q={}
     #     And I put the following lines into the clipboard:
     #         this url:
@@ -183,7 +183,7 @@ Feature: Yanking and pasting.
 
     # FIXME:conf
     # Scenario: Pasting multiline whose first line looks like a URI
-    #     When I set auto_search to true
+    #     When I set auto_search to naive
     #     And I set searchengines.DEFAULT to http://localhost:(port)/data/hello.txt?q={}
     #     And I put the following lines into the clipboard:
     #         text:
