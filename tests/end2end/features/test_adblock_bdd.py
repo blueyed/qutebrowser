@@ -26,4 +26,4 @@ bdd.scenarios('adblock.feature')
 def set_up_blocking(quteproc, lists, httpbin):
     url = 'http://localhost:{}/data/adblock/'.format(httpbin.port)
     urls = [url + item.strip() for item in lists.split(',')]
-    quteproc.set_setting('content', 'host-block-lists', ','.join(urls))
+    quteproc.set_setting('content.host_blocking.lists', ','.join(urls))
