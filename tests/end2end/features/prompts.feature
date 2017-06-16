@@ -4,7 +4,7 @@ Feature: Prompts
     Various prompts (javascript, SSL errors, authentification, etc.)
 
     Background:
-        Given I set content.javascript.console to debug
+        Given I set content.javascript.log to debug
 
     # Javascript
 

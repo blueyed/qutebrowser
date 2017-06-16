@@ -257,7 +257,7 @@ Feature: Yanking and pasting.
     #### :insert-text
 
     Scenario: Inserting text into an empty text field
-        When I set content.javascript.console to info
+        When I set content.javascript.log to info
         And I open data/paste_primary.html
         And I run :click-element id qute-textarea
         And I wait for "Entering mode KeyMode.insert (reason: clicking input)" in the log
@@ -266,7 +266,7 @@ Feature: Yanking and pasting.
         Then the javascript message "textarea contents: Hello world" should be logged
 
     Scenario: Inserting text into an empty text field with javascript disabled
-        When I set content.javascript.console to info
+        When I set content.javascript.log to info
         And I set content.javascript.enabled to false
         And I open data/paste_primary.html
         And I run :click-element id qute-textarea
@@ -280,7 +280,7 @@ Feature: Yanking and pasting.
         Then the javascript message "textarea contents: Hello world" should be logged
 
     Scenario: Inserting text into a text field at specific position
-        When I set content.javascript.console to info
+        When I set content.javascript.log to info
         And I open data/paste_primary.html
         And I set the text field to "one two three four"
         And I run :click-element id qute-textarea
@@ -295,7 +295,7 @@ Feature: Yanking and pasting.
 
     @qtwebengine_osx_xfail
     Scenario: Inserting text into a text field with undo
-        When I set content.javascript.console to info
+        When I set content.javascript.log to info
         And I open data/paste_primary.html
         And I run :click-element id qute-textarea
         And I wait for "Entering mode KeyMode.insert (reason: clicking input)" in the log
