@@ -61,7 +61,7 @@ Feature: Downloading things from a website.
         Then no crash should happen
 
     Scenario: Downloading a link without path information (issue 1243)
-        When I set completion.download_path_suggestion to filename
+        When I set downloads.location.suggestion to filename
         And I set downloads.location.prompt to true
         And I open data/downloads/issue1243.html
         And I hint with args "links download" and follow a
@@ -69,7 +69,7 @@ Feature: Downloading things from a website.
         Then the error "Download error: No handler found for qute://!" should be shown
 
     Scenario: Downloading a data: link (issue 1214)
-        When I set completion.download_path_suggestion to filename
+        When I set downloads.location.suggestion to filename
         And I set downloads.location.prompt to true
         And I open data/data_link.html
         And I hint with args "links download" and follow a
@@ -462,19 +462,19 @@ Feature: Downloading things from a website.
 
     Scenario: completion -> download-path-suggestion = path
         When I set downloads.location.prompt to true
-        And I set completion.download_path_suggestion to path
+        And I set downloads.location.suggestion to path
         And I open data/downloads/download.bin without waiting
         Then the download prompt should be shown with "(tmpdir)/downloads/"
 
     Scenario: completion -> download-path-suggestion = filename
         When I set downloads.location.prompt to true
-        And I set completion.download_path_suggestion to filename
+        And I set downloads.location.suggestion to filename
         And I open data/downloads/download.bin without waiting
         Then the download prompt should be shown with "download.bin"
 
     Scenario: completion -> download-path-suggestion = both
         When I set downloads.location.prompt to true
-        And I set completion.download_path_suggestion to both
+        And I set downloads.location.suggestion to both
         And I open data/downloads/download.bin without waiting
         Then the download prompt should be shown with "(tmpdir)/downloads/download.bin"
 
@@ -482,7 +482,7 @@ Feature: Downloading things from a website.
 
     Scenario: Remembering the last download directory
         When I set downloads.location.prompt to true
-        And I set completion.download_path_suggestion to both
+        And I set downloads.location.suggestion to both
         And I set storage.remember_download_directory to true
         And I open data/downloads/download.bin without waiting
         And I wait for the download prompt for "*/download.bin"
@@ -492,7 +492,7 @@ Feature: Downloading things from a website.
 
     Scenario: Not remembering the last download directory
         When I set downloads.location.prompt to true
-        And I set completion.download_path_suggestion to both
+        And I set downloads.location.suggestion to both
         And I set storage.remember_download_directory to false
         And I open data/downloads/download.bin without waiting
         And I wait for the download prompt for "(tmpdir)/downloads/download.bin"
@@ -504,7 +504,7 @@ Feature: Downloading things from a website.
 
     Scenario: Remembering the temporary download directory (issue 2173)
         When I set downloads.location.prompt to true
-        And I set completion.download_path_suggestion to both
+        And I set downloads.location.suggestion to both
         And I set storage.remember_download_directory to true
         And I open data/downloads/download.bin without waiting
         And I wait for the download prompt for "*"
