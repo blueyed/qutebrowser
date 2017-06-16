@@ -832,8 +832,8 @@ Feature: Tab management
             - data/hints/html/simple.html (active)
             - data/hello.txt
 
-    Scenario: opening tab with tabs.new_tab_position prev
-        When I set tabs.new_tab_position to prev
+    Scenario: opening tab with tabs.new_position prev
+        When I set tabs.new_position to prev
         And I set tabs.background_tabs to false
         And I open about:blank
         And I open data/hints/html/simple.html in a new tab
@@ -844,8 +844,8 @@ Feature: Tab management
             - data/hello.txt (active)
             - data/hints/html/simple.html
 
-    Scenario: opening tab with tabs.new_tab_position next
-        When I set tabs.new_tab_position to next
+    Scenario: opening tab with tabs.new_position next
+        When I set tabs.new_position to next
         And I set tabs.background_tabs to false
         And I open about:blank
         And I open data/hints/html/simple.html in a new tab
@@ -856,8 +856,8 @@ Feature: Tab management
             - data/hints/html/simple.html
             - data/hello.txt (active)
 
-    Scenario: opening tab with tabs.new_tab_position first
-        When I set tabs.new_tab_position to first
+    Scenario: opening tab with tabs.new_position first
+        When I set tabs.new_position to first
         And I set tabs.background_tabs to false
         And I open about:blank
         And I open data/hints/html/simple.html in a new tab
@@ -868,8 +868,8 @@ Feature: Tab management
             - about:blank
             - data/hints/html/simple.html
 
-    Scenario: opening tab with tabs.new_tab_position last
-        When I set tabs.new_tab_position to last
+    Scenario: opening tab with tabs.new_position last
+        When I set tabs.new_position to last
         And I set tabs.background_tabs to false
         And I open data/hints/html/simple.html
         And I open about:blank in a new tab
