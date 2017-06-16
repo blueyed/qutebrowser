@@ -3,7 +3,7 @@
 Feature: Setting settings.
 
     Background:
-        Given I set ui -> message-timeout to 100
+        Given I set messages.timeout to 100
 
     Scenario: Using :set
         When I run :set colors statusbar.bg magenta
@@ -88,7 +88,7 @@ Feature: Setting settings.
 
     @qtwebengine_todo: qute://settings is not implemented yet
     Scenario: Focusing input fields in qute://settings and entering valid value
-        When I set general -> ignore-case to false
+        When I set general.ignore_case to false
         And I open qute://settings
         # scroll to the right - the table does not fit in the default screen
         And I run :scroll-perc -x 100

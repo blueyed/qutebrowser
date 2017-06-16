@@ -451,8 +451,8 @@ class QuteProc(testprocess.Process):
         """Adjust some qutebrowser settings after starting."""
         settings = [
             ('messages.timeout', '0'),
-            ('auto-save.interval', '0'),
-            ('new_instance_open_target_window', 'last_opened')
+            ('auto_save.interval', '0'),
+            ('new_instance_open_target_window', 'last-opened')
         ]
         if not self.request.config.webengine:
             settings.append(('content.ssl_strict', 'false'))

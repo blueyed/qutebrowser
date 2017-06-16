@@ -70,7 +70,7 @@ Feature: Using completion
 
     Scenario: Updating the completion in realtime
         Given I have a fresh instance
-        And I set completion -> quick-complete to false
+        And I set completion.quick_complete to false
         When I open data/hello.txt
         And I run :set-cmd-text -s :buffer
         And I run :completion-item-focus next
@@ -85,12 +85,12 @@ Feature: Using completion
             - data/hello3.txt (active)
 
     Scenario: Updating the value completion in realtime
-        Given I set colors -> statusbar.bg to green
+        Given I set colors.statusbar.bg to green
         When I run :set-cmd-text -s :set colors statusbar.bg
-        And I set colors -> statusbar.bg to yellow
+        And I set colors.statusbar.bg to yellow
         And I run :completion-item-focus next
         And I run :completion-item-focus next
-        And I set colors -> statusbar.bg to red
+        And I set colors.statusbar.bg to red
         And I run :command-accept
         Then colors -> statusbar.bg should be yellow
 

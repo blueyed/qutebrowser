@@ -99,7 +99,7 @@ def test_hints(test_name, zoom_text_only, zoom_level, find_implementation,
 
     # setup
     if not request.config.webengine:
-        quteproc.set_setting('zoom.text-only', str(zoom_text_only))
+        quteproc.set_setting('zoom.text_only', str(zoom_text_only))
         quteproc.set_setting('hints.find_implementation', find_implementation)
     quteproc.send_cmd(':zoom {}'.format(zoom_level))
     # follow hint
