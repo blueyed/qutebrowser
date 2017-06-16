@@ -359,7 +359,7 @@ Feature: Various utility commands.
     @qtwebengine_todo: pdfjs is not implemented yet
     Scenario: pdfjs is not used when disabled
         When I set content.enable_pdfjs to false
-        And I set downloads.location.directory to false
+        And I set downloads.location.prompt to false
         And I open data/misc/test.pdf
         Then "Download test.pdf finished" should be logged
 
@@ -372,7 +372,7 @@ Feature: Various utility commands.
         And I have a fresh instance
         When I set content.enable_pdfjs to true
         And I set completion.download_path_suggestion to filename
-        And I set downloads.location.directory to true
+        And I set downloads.location.prompt to true
         And I open data/misc/test.pdf
         And I wait for "[qute://pdfjs/*] PDF * (PDF.js: *)" in the log
         And I run :jseval document.getElementById("download").click()
