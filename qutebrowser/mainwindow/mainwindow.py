@@ -392,7 +392,7 @@ class MainWindow(QWidget):
         log.init.debug("Loading mainwindow from {!r}".format(geom))
         ok = self.restoreGeometry(geom)
         if not ok:
-            log.init.warning("Error while loading geometry.")
+            log.init.warning("Error while loading geometry {!r}.".format(geom))
             self._set_default_geometry()
 
     def _connect_overlay_signals(self):
