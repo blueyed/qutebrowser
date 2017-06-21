@@ -55,9 +55,10 @@ def _get_socketname(basedir, legacy=False):
     if legacy or os.name == 'nt':
         return _get_socketname_legacy(basedir)
 
-    parts_to_hash = [getpass.getuser()]
+    parts_to_hash = [getpass.getuser(), os.environ.get('DISPLAY')]
     if basedir is not None:
         parts_to_hash.append(basedir)
+    log.ipc.debug('Using socket hash based on %s.', parts_to_hash)
 
     data_to_hash = '-'.join(parts_to_hash).encode('utf-8')
     md5 = hashlib.md5(data_to_hash).hexdigest()
